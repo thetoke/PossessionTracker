@@ -1,0 +1,12 @@
+﻿  main.cpp
+main.obj : error LNK2019: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPAX@Z) referenced in function "public: __thiscall cv::Mat::~Mat(void)" (??1Mat@cv@@QAE@XZ)
+main.obj : error LNK2019: unresolved external symbol "private: char * __thiscall cv::String::allocate(unsigned int)" (?allocate@String@cv@@AAEPADI@Z) referenced in function "public: __thiscall cv::String::String(char const *)" (??0String@cv@@QAE@PBD@Z)
+main.obj : error LNK2019: unresolved external symbol "private: void __thiscall cv::String::deallocate(void)" (?deallocate@String@cv@@AAEXXZ) referenced in function "public: __thiscall cv::String::~String(void)" (??1String@cv@@QAE@XZ)
+main.obj : error LNK2019: unresolved external symbol "public: void __thiscall cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QAEXXZ) referenced in function "public: void __thiscall cv::Mat::release(void)" (?release@Mat@cv@@QAEXXZ)
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall cv::VideoCapture::VideoCapture(class cv::String const &)" (??0VideoCapture@cv@@QAE@ABVString@1@@Z) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: virtual __thiscall cv::VideoCapture::~VideoCapture(void)" (??1VideoCapture@cv@@UAE@XZ) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::isOpened(void)const " (?isOpened@VideoCapture@cv@@UBE_NXZ) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: virtual bool __thiscall cv::VideoCapture::read(class cv::_OutputArray const &)" (?read@VideoCapture@cv@@UAE_NABV_OutputArray@2@@Z) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "void __cdecl cv::imshow(class cv::String const &,class cv::_InputArray const &)" (?imshow@cv@@YAXABVString@1@ABV_InputArray@1@@Z) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol _cvWaitKey referenced in function _main
+C:\Users\Matt\Source\Repos\PossessionTracker\PossessionTracker\Debug\PossessionTracker.exe : fatal error LNK1120: 10 unresolved externals

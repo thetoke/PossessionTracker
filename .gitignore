@@ -34,3 +34,5 @@
 # VS files 
 *.VC.opendb 
 *.VC.db
+/PossessionTracker/PossessionTracker/x64/Debug/Possessi.8F151120.tlog
+/PossessionTracker/PossessionTracker.VC.VC.opendb

@@ -1,67 +1,70 @@
+/*
+	By Vlada Kucera on March 11 ,2016 from www.funvision.blogspot.nl
+	Modified by Matt Moynihan, 2017
+*/
 
-#include<opencv2/opencv.hpp>
-#include<windows.h>
+#include<opencv2/core/core.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include<opencv2/imgproc/imgproc.hpp>
+#include<opencv2/objdetect/objdetect.hpp>
+#include<stdexcept>
 #include<iostream>
-#include<stdio.h>
-#include<stdlib.h>
+#include<string>
 
+using namespace std;
 using namespace cv; 
 
-
-int main(int argc, char* argv[])
+int main(int argc, const char** argv)
 {
-	
-	VideoCapture cap(argv[1]);
-	int fps = cap.get(CV_CAP_PROP_FPS);
+	// Name of the downloaded my cascades..  
+	string cascadeName = "cascade.xml";
+
+	// Load the cascade 
+	CascadeClassifier detectorBody;
+
+	bool loaded1 = detectorBody.load(cascadeName);
+
+	Mat img;
+	Mat original;
+
+	img = imread(argv[1]);
+	img.copyTo(original);
+
+	// Prepare vector for results 
+
+	vector<Rect> human;
+	// Prepare gray image 
 
 
+	cvtColor(img, img, CV_BGR2GRAY);
 
-	if (!cap.isOpened())
 
+	// equalize Histogram   
+
+
+	equalizeHist(img, img);
+
+
+	// detect body and head in the img  
+
+	// Set the proper min and max size for your  
+
+	detectorBody.detectMultiScale(img, human, 1.04, 4, 0 | 1, Size(30, 80), Size(80, 200));
+
+	if (human.size() > 0)
 	{
-		std::cout << "!!! Failed to open file: " << argv[1] << std::endl;
-		return -1;
+
+		for (int gg = 0; gg < human.size(); gg++)
+		{
+
+
+			rectangle(original, human[gg].tl(), human[gg].br(), Scalar(0, 0, 255), 2, 8, 0);
+
+
+		}
+
 	}
 
-	Mat frame;
 
-	int frameNumber = 1;
-
-	for (;;) 
-	{
-
-		clock_t begin = clock();
-
-		
-		if (!cap.read(frame))
-			break;
-
-		cap >> frame;
-		if (!frame.data)
-			continue;
-
-		Point textOrg(30,30);
-		int fontFace = FONT_HERSHEY_COMPLEX_SMALL;
-		double fontScale = 1.5;
-		int thickness = 2;
-
-		putText(frame, std::to_string(fps), textOrg, fontFace, fontScale, Scalar::all(255), thickness, 8);
-
-		imshow("Dedly Boys", frame);
-
-		char key = cvWaitKey(10); 
-		if (key == 27) // ESC
-
-			break;
-
-		Sleep(200);
-
-		clock_t end = clock();
-		double elapsed_secs = 10 * double(end - begin) / CLOCKS_PER_SEC;
-		frameNumber++;
-		fps = (int) frameNumber / elapsed_secs;
-	}
-	
 	return 0;
-
 }

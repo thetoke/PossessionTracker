@@ -65,6 +65,9 @@ int main(int argc, const char** argv)
 
 	}
 
+	cv::imshow("Yessur",original);
+	waitKey(10);
+
 
 	return 0;
 }

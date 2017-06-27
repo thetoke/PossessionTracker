@@ -31,43 +31,28 @@ int main(int argc, const char** argv)
 	img.copyTo(original);
 
 	// Prepare vector for results 
-
 	vector<Rect> human;
+
 	// Prepare gray image 
-
-
 	cvtColor(img, img, CV_BGR2GRAY);
 
-
 	// equalize Histogram   
-
-
 	equalizeHist(img, img);
 
-
-	// detect body and head in the img  
-
-	// Set the proper min and max size for your  
-
-	detectorBody.detectMultiScale(img, human, 1.04, 4, 0 | 1, Size(30, 80), Size(80, 200));
+	// detect body in the img  
+	// Set the proper min and max size for typical frame 
+	detectorBody.detectMultiScale(img, human, 1.04, 4, 0 | 1, Size(40, 200), Size(110, 350));
 
 	if (human.size() > 0)
 	{
-
 		for (int gg = 0; gg < human.size(); gg++)
 		{
-
-
 			rectangle(original, human[gg].tl(), human[gg].br(), Scalar(0, 0, 255), 2, 8, 0);
-
-
 		}
-
 	}
 
-	cv::imshow("Yessur",original);
+	cv::imshow("Detector Results",original);
 	waitKey(10);
-
 
 	return 0;
 }
